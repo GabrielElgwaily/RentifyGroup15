@@ -3,6 +3,7 @@ package com.example.rentify;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class signIn extends AppCompatActivity {
+    private EditText usernameInput;
+    private EditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +26,33 @@ public class signIn extends AppCompatActivity {
             return insets;
         });
     }
+
+
+
+    public void OnSetSigninButton(View view) {
+        View button3 = findViewById(R.id.button4);
+        usernameInput = findViewById(R.id.usernameInputLI);
+        passwordInput = findViewById(R.id.passwordInputLI);
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
+//Application Context and Activity
+        if (username.equals("admin") && password.equals("XPI76SZUqyCjVxgnUjm0")) {
+            Intent intent = new Intent(getApplicationContext(), adminWelcome.class);
+            startActivity (intent);}
+        if (MainActivity.verifyRentor(username, password)){
+            Intent intent = new Intent(getApplicationContext(), WelcomePageRenter.class);
+            startActivity (intent);
+        }
+        if (MainActivity.verifyLessor(username, password)){
+            Intent intent = new Intent(getApplicationContext(), welcomePage.class);
+            startActivity (intent);
+        }
+    }
+
+
     public void OnSetLoginButton(View view) {
         View button5 = findViewById(R.id.button5);
 //Application Context and Activity
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity (intent);
+        startActivity (intent);}
     }
-}

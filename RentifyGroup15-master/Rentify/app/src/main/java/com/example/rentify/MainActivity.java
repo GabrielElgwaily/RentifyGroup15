@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
 
+public class MainActivity extends AppCompatActivity {
+    private EditText usernameInput;
+    private EditText passwordInput;
+    private static HashMap<String, String> rentorDatabase = new HashMap<>();
+    private static HashMap<String, String> lessorDatabase = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +38,55 @@ public class MainActivity extends AppCompatActivity {
         startActivity (intent);
     }
 
+    // store usernames and passwords in a hashmap
+    public void addRentor(String username, String password) {
+        //this implementation will override any other users with the same username
+        //fix this by showing the user a warning
+            rentorDatabase.put(username, password);
+    }
+    public void addLessor(String username, String password) {
+        //this implementation will override any other users with the same username
+        //fix this by showing the user a warning
+        lessorDatabase.put(username, password);
+    }
+    public static boolean verifyRentor(String username, String password) {
+        if (rentorDatabase.containsKey(username)) {
+            return rentorDatabase.get(username).equals(password);
+        }
+        return false;
+    }
+    public static boolean verifyLessor(String username, String password) {
+        if (lessorDatabase.containsKey(username)) {
+            return lessorDatabase.get(username).equals(password);
+        }
+        return false;
+    }
+
+
     public void OnSetRenterButton(View view) {
         View button2 = findViewById(R.id.button2);
+        usernameInput = findViewById(R.id.usernameInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
 //Application Context and Activity
+        if (!username.isEmpty() && !password.isEmpty()) {
+            addRentor(username, password);
         Intent intent = new Intent(getApplicationContext(), WelcomePageRenter.class);
-        startActivity (intent);
+        startActivity (intent);}
     }
 
     public void OnSetLessorButton(View view) {
         View button3 = findViewById(R.id.button3);
+        usernameInput = findViewById(R.id.usernameInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
 //Application Context and Activity
+        if (!username.isEmpty() && !password.isEmpty()) {
+            addLessor(username, password);
         Intent intent = new Intent(getApplicationContext(), welcomePage.class);
-        startActivity (intent);
+        startActivity (intent);}
     }
 
 
