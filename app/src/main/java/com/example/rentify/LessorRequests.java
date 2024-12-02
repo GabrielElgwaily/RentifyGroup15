@@ -25,12 +25,10 @@ public class LessorRequests extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessor_requests);
 
-        // Initialize components
         listViewRequests = findViewById(R.id.listViewSearchResults);
         requestedItems = new ArrayList<>();
         databaseRequests = FirebaseDatabase.getInstance().getReference("lessor_requests");
 
-        // Load requested items
         loadRequestedItems();
     }
 
@@ -51,7 +49,6 @@ public class LessorRequests extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Handle error
             }
         });
     }

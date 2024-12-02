@@ -15,11 +15,9 @@ public class ManageUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_users);
 
-        // Retrieve the keys from MainActivity's static HashMaps
         ArrayList<String> userKeys = new ArrayList<>(MainActivity.rentorDatabase.keySet());
         userKeys.addAll(MainActivity.lessorDatabase.keySet());
 
-        // Set up ListView and adapter
         listView = findViewById(R.id.listView);
         adapter = new UserList(this, userKeys);
         listView.setAdapter(adapter);

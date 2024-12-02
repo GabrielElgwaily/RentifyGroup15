@@ -16,7 +16,7 @@ import java.util.List;
 public class UserList extends ArrayAdapter<String> {
     private Activity context;
     private List<String> items;
-    private Handler handler = new Handler(Looper.getMainLooper()); // Handler for delayed execution
+    private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable saveRunnable;
 
     public UserList(Activity context, List<String> items) {

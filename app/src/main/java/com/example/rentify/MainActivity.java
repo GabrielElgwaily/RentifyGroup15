@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-//Application Context and Activity
         if (!username.isEmpty() && !password.isEmpty()) {
             addRentor(username, password);
         Intent intent = new Intent(getApplicationContext(), WelcomePageRenter.class);
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-//Application Context and Activity
         if (!username.isEmpty() && !password.isEmpty()) {
             addLessor(username, password);
         Intent intent = new Intent(getApplicationContext(), welcomePage.class);

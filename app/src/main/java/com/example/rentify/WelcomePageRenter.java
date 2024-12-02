@@ -29,7 +29,7 @@ public class WelcomePageRenter extends AppCompatActivity {
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // When the button is clicked, navigate to AddItem activity
+
                 Intent intent = new Intent(WelcomePageRenter.this, RenterPage.class);
                 startActivity(intent);
             }

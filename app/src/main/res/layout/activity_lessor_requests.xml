@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Title at the top -->
     <TextView
         android:id="@+id/titleRequests"
         android:layout_width="wrap_content"
@@ -16,7 +15,6 @@
         android:textStyle="bold"
         android:textColor="@android:color/black" />
 
-    <!-- ListView to display the dynamic list -->
     <ListView
         android:id="@+id/listViewSearchResults"
         android:layout_width="match_parent"

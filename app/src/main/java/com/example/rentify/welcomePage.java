@@ -19,7 +19,6 @@ public class welcomePage extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_welcome_page);
 
-        // Apply window insets for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -31,7 +30,6 @@ public class welcomePage extends AppCompatActivity {
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // When the button is clicked, navigate to AddItem activity
                 Intent intent = new Intent(welcomePage.this, AddItem.class);
                 startActivity(intent);
             }
@@ -40,7 +38,6 @@ public class welcomePage extends AppCompatActivity {
         buttonRequests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // When the button is clicked, navigate to AddItem activity
                 Intent intent = new Intent(welcomePage.this, LessorRequests.class);
                 startActivity(intent);
             }

@@ -44,14 +44,12 @@ public class ItemRequestList extends ArrayAdapter<Items> {
         buttonRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reference to lessor_requests node
                 DatabaseReference databaseRequests = FirebaseDatabase.getInstance().getReference("lessor_requests");
 
-                // Save the item to lessor_requests
+
                 databaseRequests.child(item.getId()).setValue(item).addOnSuccessListener(aVoid -> {
                     Toast.makeText(context, "Item Requested", Toast.LENGTH_SHORT).show();
 
-                    // Optional: Remove item from items node
                     DatabaseReference databaseItems = FirebaseDatabase.getInstance().getReference("items").child(item.getId());
                     databaseItems.removeValue().addOnSuccessListener(aVoid1 -> {
                         items.remove(position);

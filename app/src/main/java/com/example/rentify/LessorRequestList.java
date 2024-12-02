@@ -42,11 +42,10 @@ public class LessorRequestList extends ArrayAdapter<Items> {
         textViewTime.setText(item.getItemTime() + " hours");
         textViewFee.setText("$" + item.getItemFee());
 
-        // Handle Accept button click
+
         buttonAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Remove the item from Firebase
                 DatabaseReference databaseRequests = FirebaseDatabase.getInstance().getReference("lessor_requests").child(item.getId());
                 databaseRequests.removeValue().addOnSuccessListener(aVoid -> {
                     Toast.makeText(context, "Request Accepted", Toast.LENGTH_SHORT).show();
@@ -58,11 +57,9 @@ public class LessorRequestList extends ArrayAdapter<Items> {
             }
         });
 
-        // Handle Deny button click
         buttonDeny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Remove the item from Firebase
                 DatabaseReference databaseRequests = FirebaseDatabase.getInstance().getReference("lessor_requests").child(item.getId());
                 databaseRequests.removeValue().addOnSuccessListener(aVoid -> {
                     Toast.makeText(context, "Request Denied", Toast.LENGTH_SHORT).show();

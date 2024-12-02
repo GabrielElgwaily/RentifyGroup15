@@ -27,29 +27,23 @@ public class RenterPage extends AppCompatActivity {
     private ListView listViewSearchResults;
 
     private DatabaseReference databaseItems;
-    private List<Items> allItems; // List of all items from Firebase
-    private List<Items> filteredItems; // List of items matching the search query
-    private ItemRequestList adapter; // Adapter for the ListView
+    private List<Items> allItems;
+    private List<Items> filteredItems;
+    private ItemRequestList adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rentor_request);
 
-        // Initialize UI components
         editTextSearch = findViewById(R.id.editTextSearch);
         buttonSearch = findViewById(R.id.buttonSearch);
         listViewSearchResults = findViewById(R.id.listViewSearchResults);
-
-        // Initialize Firebase reference and lists
         databaseItems = FirebaseDatabase.getInstance().getReference("items");
         allItems = new ArrayList<>();
         filteredItems = new ArrayList<>();
-
-        // Load all items from Firebase
         loadItemsFromFirebase();
 
-        // Set up search button click listener
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +51,6 @@ public class RenterPage extends AppCompatActivity {
             }
         });
 
-        // Optional: Perform search in real-time as the user types
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -84,7 +77,6 @@ public class RenterPage extends AppCompatActivity {
                     }
                 }
 
-                // Initialize adapter with all items initially
                 filteredItems.addAll(allItems);
                 adapter = new ItemRequestList(RenterPage.this, filteredItems);
                 listViewSearchResults.setAdapter(adapter);
@@ -99,11 +91,9 @@ public class RenterPage extends AppCompatActivity {
 
     private void performSearch(String query) {
         if (query.isEmpty()) {
-            // If search query is empty, show all items
             filteredItems.clear();
             filteredItems.addAll(allItems);
         } else {
-            // Filter items based on name or category
             filteredItems.clear();
             for (Items item : allItems) {
                 if (item.getItemName().toLowerCase().contains(query.toLowerCase()) ||
@@ -113,7 +103,6 @@ public class RenterPage extends AppCompatActivity {
             }
         }
 
-        // Notify adapter about data changes
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }

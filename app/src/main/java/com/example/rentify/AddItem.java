@@ -45,7 +45,6 @@ public class AddItem extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_item);
 
-        // Initialize UI components
         editTextName = findViewById(R.id.editTextName4);
         editTextDescription = findViewById(R.id.textItemDescription2);
         autoTextCategory = findViewById(R.id.autoCompleteTextView2);
@@ -57,7 +56,6 @@ public class AddItem extends AppCompatActivity {
         items = new ArrayList<>();
         databaseItems = FirebaseDatabase.getInstance().getReference("items");
 
-        // Set click listener to add item
         buttonAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +128,6 @@ public class AddItem extends AppCompatActivity {
 
 
 
-        // Fetch categories for the AutoCompleteTextView
         DatabaseReference databaseCategories = FirebaseDatabase.getInstance().getReference("categories");
         databaseCategories.addValueEventListener(new ValueEventListener() {
             @Override
@@ -141,11 +138,9 @@ public class AddItem extends AppCompatActivity {
                     categoryNames.add(category.getCategoryName());
                 }
 
-                // Set up AutoCompleteTextView adapter
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(AddItem.this, android.R.layout.simple_dropdown_item_1line, categoryNames);
                 autoTextCategory.setAdapter(adapter);
 
-                // Show dropdown when AutoCompleteTextView is clicked or gains focus
                 autoTextCategory.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -173,10 +168,9 @@ public class AddItem extends AppCompatActivity {
             String id = databaseItems.push().getKey();
             Items item = new Items(id, name, description, category, fee, time);
 
-            // Save item to Firebase
             databaseItems.child(id).setValue(item);
 
-            // Clear input fields after adding item
+
             editTextName.setText("");
             editTextDescription.setText("");
             editTextFee.setText("");
@@ -206,10 +200,7 @@ public class AddItem extends AppCompatActivity {
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
-        // Populate fields with the item data
         editTextName.setText(itemName);
-        // Set other fields if needed...
-
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,7 +35,6 @@ public class signIn extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInputLI);
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-//Application Context and Activity
         if (username.equals("admin") && password.equals("XPI76SZUqyCjVxgnUjm0")) {
             Intent intent = new Intent(getApplicationContext(), adminWelcome.class);
             startActivity (intent);}
@@ -52,7 +51,6 @@ public class signIn extends AppCompatActivity {
 
     public void OnSetLoginButton(View view) {
         View button5 = findViewById(R.id.button5);
-//Application Context and Activity
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity (intent);}
     }
